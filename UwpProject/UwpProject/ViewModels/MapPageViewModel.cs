@@ -53,8 +53,9 @@ namespace UwpProject.ViewModels
                     Geoposition pos = await _locator.GetGeopositionAsync();
                     CurrentLocation = pos.Coordinate.Point;
                     break;
-                case GeolocationAccessStatus.Denied:
+                case GeolocationAccessStatus.Denied:                    
                     Debug.WriteLine("No access");
+                    //SetLocator();
                     break;
                 case GeolocationAccessStatus.Unspecified:
                     Debug.WriteLine("Unspecified access");

@@ -6,8 +6,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Name="ToMapPage" Label="To map" Icon="Map" Click="ToMapPage_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>   
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+            
     </Grid>
 </Page>

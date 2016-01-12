@@ -14,7 +14,8 @@
             TiltInteractionMode="GestureAndControl"
             MapServiceToken="6wnTUTIQl21Kq4hg9RMk~OrRLgdJhMBMWPFIvY8fUvw~Ai9Vsk6zJc1XNmmLbYg_TCAOf96_P3Z6MToemeWmy_Z7xO3xNHH1-Jooc5oUqwUr"
             ZoomLevel="18"
-            LandmarksVisible="True"                        
+            LandmarksVisible="True"        
+            Center="{Binding CurrentLocation,Mode=OneWay}"             
             CenterChanged="MapControler_CenterChanged"/>
     </Grid>
 </Page>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UwpProject.Pages;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -24,7 +25,12 @@ namespace UwpProject
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            this.InitializeComponent();            
+        }
+
+        private void ToMapPage_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MapPage));
         }
     }
 }
