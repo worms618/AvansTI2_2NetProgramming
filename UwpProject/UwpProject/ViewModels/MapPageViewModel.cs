@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UwpProject.Model;
 using Windows.Devices.Geolocation;
+using Windows.UI.Xaml.Controls.Maps;
 
 namespace UwpProject.ViewModels
 {
@@ -25,22 +22,22 @@ namespace UwpProject.ViewModels
         }
 
         private Geolocator _locator;
-        public Geolocator Locator
-        {
-            get { return _locator; }
-            private set { _locator = value; OnPropertyChanged(nameof(Locator)); }
-        }
 
         private Geopoint _currentLocation;
         public Geopoint CurrentLocation
         {
             get { return _currentLocation; }
-            set { _currentLocation = value; OnPropertyChanged(nameof(CurrentLocation)); }
+            set { _currentLocation = value; }
         }
+
+
+        public MapIcon CurrentLocationIcon { get;}
+
 
         private MapPageViewModel()
         {
             SetLocator();
+            CurrentLocationIcon = MapElementFactory.MakeIcon(CurrentLocation, new Uri("ms-appx:///Assets/pokebal_16x16.png"), 1);
         }
 
         public async void SetLocator()
@@ -49,18 +46,24 @@ namespace UwpProject.ViewModels
             switch (access)
             {
                 case GeolocationAccessStatus.Allowed:
-                    _locator = new Geolocator() { DesiredAccuracyInMeters = 2 };
-                    Geoposition pos = await _locator.GetGeopositionAsync();
-                    CurrentLocation = pos.Coordinate.Point;
+                    _locator = new Geolocator() { DesiredAccuracy = PositionAccuracy.High };                                                                         
                     break;
                 case GeolocationAccessStatus.Denied:                    
-                    Debug.WriteLine("No access");
-                    //SetLocator();
+                    Debug.WriteLine("No access");                    
                     break;
                 case GeolocationAccessStatus.Unspecified:
                     Debug.WriteLine("Unspecified access");
                     break;
             }
+        }
+        
+        public async void SetCurrentLocation()
+        {
+            //Debug.WriteLine("getting location");
+            Geoposition pos = await _locator.GetGeopositionAsync();
+            //Debug.WriteLine($"get location: {pos.Coordinate.Point.ToString()}");
+            CurrentLocation = pos.Coordinate.Point;            
+            CurrentLocationIcon.Location = pos.Coordinate.Point;  
         }
     }
 }

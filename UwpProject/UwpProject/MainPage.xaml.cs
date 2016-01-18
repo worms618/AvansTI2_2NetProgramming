@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UwpProject.Model;
 using UwpProject.Pages;
+using UwpProject.ViewModels;
+using Windows.ApplicationModel.Background;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System.Threading;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,12 +27,13 @@ namespace UwpProject
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
-    {
+    {        
         public MainPage()
         {
-            this.InitializeComponent();            
+            this.InitializeComponent();
+            MapPageViewModel mpvm = MapPageViewModel.Instance;
         }
-
+        
         private void ToMapPage_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MapPage));
