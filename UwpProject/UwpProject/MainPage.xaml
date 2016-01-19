@@ -7,7 +7,52 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Background="#E3350D">
+            <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="16" Foreground="White"
+                    Width="48" Height="48" Background="Transparent" Click="HamburgerButton_Click"/>
+            <TextBlock x:Name="PageHeader" Text="Page" VerticalAlignment="Center" Foreground="White" FontSize="24"></TextBlock>
+        </StackPanel>
+        <SplitView x:Name="MySplitView" DisplayMode="Overlay"  IsPaneOpen="False" 
+               CompactPaneLength="48" OpenPaneLength="150" Grid.Row="1">
+            <SplitView.Pane>
+                <StackPanel Background="#E3350D">
+                    <ListBox SelectionMode="Single" Name="MyListBox" SelectionChanged="MyListBox_SelectionChanged" Background="Transparent">
+                        <ListBoxItem Name="_pokedexPage">
+                            <StackPanel Margin="4,0,0,0" Orientation="Horizontal">
+                                <TextBlock x:Name="Pokedex" FontFamily="Segoe MDL2 Assets" Text="&#xE12A;" VerticalAlignment="Center" Foreground="White"/>
+                                <TextBlock Margin="18,0,0,0" Text="Pokédex" FontSize="16" VerticalAlignment="Center" Foreground="White"/>
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem  Name="_pokemonPage">
+                            <StackPanel Margin="4,0,0,0" Orientation="Horizontal">
+                                <Image Source="Assets/pokeball50x50.png" Height="16" VerticalAlignment="Center" />
+                                <TextBlock Margin="18,0,0,0" Text="Pokémon" FontSize="16" VerticalAlignment="Center" Foreground="White"/>
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem Name="_townmapPage">
+                            <StackPanel Margin="4,0,0,0" Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE128;" Foreground="White" VerticalAlignment="Center" />
+                                <TextBlock Margin="18,0,0,0" Text="Town Map" FontSize="16" VerticalAlignment="Center" Foreground="White"/>
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem Name="_settingsPage">
+                            <StackPanel Margin="4,0,0,0" Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE115;" Foreground="White" VerticalAlignment="Center" />
+                                <TextBlock Margin="18,0,0,0" Text="Settings" FontSize="16" VerticalAlignment="Center" Foreground="White"/>
+                            </StackPanel>
+                        </ListBoxItem>
+                    </ListBox>
+                </StackPanel>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Frame Name="MyFrame">
+                </Frame>
+            </SplitView.Content>
+        </SplitView>
     </Grid>
 </Page>

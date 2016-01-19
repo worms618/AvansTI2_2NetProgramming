@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UwpProject.MyPokemon;
+using UwpProject.Pokedex;
+using UwpProject.Settings;
+using UwpProject.TownMap;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,6 +29,53 @@ namespace UwpProject
         public MainPage()
         {
             this.InitializeComponent();
+            MyFrame.Navigate(typeof(SplashScreenPage), PageHeader);
         }
+
+        private void MyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_pokedexPage.IsSelected)
+            {
+                MyFrame.Navigate(typeof(PokedexScreen), PageHeader);
+            }
+            else if (_pokemonPage.IsSelected)
+            {
+                MyFrame.Navigate(typeof(MyPokemonPage), PageHeader);
+            }
+            else if (_townmapPage.IsSelected)
+            {
+                MyFrame.Navigate(typeof(TownMapPage), PageHeader);
+            }
+            else if (_settingsPage.IsSelected)
+            {
+                MyFrame.Navigate(typeof(SettingsPage), PageHeader);
+            }
+        }
+
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        {
+            MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
+        }
+
+        ///<summary>
+        /// two methods to navigate through the backstack.
+        /// </summary>
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MyFrame.CanGoBack)
+            {
+                MyFrame.GoBack();
+            }
+        }
+
+        private void ForwardButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MyFrame.CanGoForward)
+            {
+                MyFrame.GoForward();
+            }
+        }
+
     }
 }
