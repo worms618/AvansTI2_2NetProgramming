@@ -99,7 +99,6 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\DelegateCommand.cs" />
     <Compile Include="Model\MapElementFactory.cs" />
     <Compile Include="Model\PropertyChange.cs" />
     <Compile Include="Pages\MapPage.xaml.cs">

@@ -30,9 +30,7 @@ namespace UwpProject.ViewModels
             set { _currentLocation = value; }
         }
 
-
-        public MapIcon CurrentLocationIcon { get;}
-
+        public MapIcon CurrentLocationIcon { get; }
 
         private MapPageViewModel()
         {
@@ -60,10 +58,13 @@ namespace UwpProject.ViewModels
         public async void SetCurrentLocation()
         {
             //Debug.WriteLine("getting location");
-            Geoposition pos = await _locator.GetGeopositionAsync();
-            //Debug.WriteLine($"get location: {pos.Coordinate.Point.ToString()}");
-            CurrentLocation = pos.Coordinate.Point;            
-            CurrentLocationIcon.Location = pos.Coordinate.Point;  
+            if (_locator != null)
+            {
+                Geoposition pos = await _locator.GetGeopositionAsync();
+                //Debug.WriteLine($"get location: {pos.Coordinate.Point.ToString()}");
+                CurrentLocation = pos.Coordinate.Point;
+                CurrentLocationIcon.Location = pos.Coordinate.Point;
+            }
         }
     }
 }
