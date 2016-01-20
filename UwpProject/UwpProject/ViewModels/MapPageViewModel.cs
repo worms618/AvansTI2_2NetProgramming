@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using UwpProject.Model;
 using Windows.Devices.Geolocation;
+using Windows.Devices.Geolocation.Geofencing;
 using Windows.UI.Xaml.Controls.Maps;
 
 namespace UwpProject.ViewModels
@@ -27,7 +28,14 @@ namespace UwpProject.ViewModels
         public Geopoint CurrentLocation
         {
             get { return _currentLocation; }
-            set { _currentLocation = value; }
+            set { SetMeters(value.Position); _currentLocation = value; }
+        }
+
+        private double meters = 0.0;
+        public double Meters
+        {
+            get { return meters; }
+            set { meters = value; OnPropertyChanged(nameof(meters)); }
         }
 
         public MapIcon CurrentLocationIcon { get; }
@@ -35,7 +43,7 @@ namespace UwpProject.ViewModels
         private MapPageViewModel()
         {
             SetLocator();
-            CurrentLocationIcon = MapElementFactory.MakeIcon(CurrentLocation, new Uri("ms-appx:///Assets/pokebal_16x16.png"), 1);
+            CurrentLocationIcon = MapElementFactory.MakeIcon(CurrentLocation, new Uri("ms-appx:///Assets/pokebal_16x16.png"), 10);
         }
 
         public async void SetLocator()
@@ -44,7 +52,7 @@ namespace UwpProject.ViewModels
             switch (access)
             {
                 case GeolocationAccessStatus.Allowed:
-                    _locator = new Geolocator() { DesiredAccuracy = PositionAccuracy.High };                                                                         
+                    _locator = new Geolocator() { DesiredAccuracy = PositionAccuracy.High };                                                                                          
                     break;
                 case GeolocationAccessStatus.Denied:                    
                     Debug.WriteLine("No access");                    
@@ -65,6 +73,37 @@ namespace UwpProject.ViewModels
                 CurrentLocation = pos.Coordinate.Point;
                 CurrentLocationIcon.Location = pos.Coordinate.Point;
             }
+        }
+
+        private void SetMeters(BasicGeoposition newPoint)
+        {
+            if(CurrentLocation != null)
+            {
+                Meters += CalculateMeters(CurrentLocation.Position, newPoint);
+                Debug.WriteLine($"Afstand gelopen: {Meters}");
+            }
+        }
+
+        private double CalculateMeters(BasicGeoposition first, BasicGeoposition second)
+        {
+            double theta = first.Longitude - second.Longitude;
+            double dist = Math.Sin(deg2rad(first.Latitude)) * Math.Sin(deg2rad(second.Latitude)) + Math.Cos(deg2rad(first.Latitude)) * Math.Cos(deg2rad(second.Latitude)) * Math.Cos(deg2rad(theta));
+            dist = Math.Acos(dist);
+            dist = rad2deg(dist);
+            dist = dist * 60 * 1.1515;            
+            dist = dist * 1.609344; //naar kilometers
+            dist = dist * 1000.0;//naar meters
+            return (dist);
+        } 
+
+        private double deg2rad(double deg)
+        {
+            return (deg * Math.PI / 180.0);
+        }
+
+        private double rad2deg(double rad)
+        {
+            return (rad / Math.PI * 180.0);
         }
     }
 }

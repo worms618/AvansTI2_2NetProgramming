@@ -10,11 +10,12 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Name="CurrentLocationPin" Label="Ga naar current location" Icon="Flag" Click="CurrentLocationPin_Click"/>
+            <AppBarButton Name="Mainpage" Label="Ga naar mainpage" Icon="Back" Click="Mainpage_Click"/>
+            <AppBarButton Name="CurrentLocationPin" Label="Ga naar current location" Icon="Flag" Click="CurrentLocationPin_Click"/>            
         </CommandBar>
     </Page.BottomAppBar>
     
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">        
         <Maps:MapControl
             x:Name="MapControler"
             ZoomInteractionMode="GestureAndControl"
@@ -23,5 +24,6 @@
             ZoomLevel="18"
             LandmarksVisible="True"            
             CenterChanged="MapControler_CenterChanged"/>
+        <TextBlock Text="{Binding Meters,Mode=OneWay}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
     </Grid>
 </Page>

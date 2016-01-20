@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Storage.Streams;
+using Windows.UI;
 using Windows.UI.Xaml.Controls.Maps;
 
 namespace UwpProject.Model
@@ -30,6 +32,19 @@ namespace UwpProject.Model
                 Debug.WriteLine(e.Message + "\n" + e.StackTrace);
                 return null;
             }
+        }
+
+        public static MapPolygon MakePolygon(Color fillColor,Color strokecolor,List<BasicGeoposition> positions,int zIndex)
+        {
+            var shape = new MapPolygon
+            {
+                FillColor = fillColor,
+                StrokeColor = strokecolor,
+                Path = new Geopath(positions),
+                ZIndex = zIndex,
+                Visible = true
+            };
+            return shape;
         }
     }
 }

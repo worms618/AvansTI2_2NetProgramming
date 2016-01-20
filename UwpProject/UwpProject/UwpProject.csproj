@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="Model\MapElementFactory.cs" />
     <Compile Include="Model\PropertyChange.cs" />
+    <Compile Include="Model\SpecialPlace.cs" />
     <Compile Include="Pages\MapPage.xaml.cs">
       <DependentUpon>MapPage.xaml</DependentUpon>
     </Compile>
