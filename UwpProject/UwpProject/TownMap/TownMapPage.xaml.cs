@@ -22,16 +22,25 @@ namespace UwpProject.TownMap
     /// </summary>
     public sealed partial class TownMapPage : Page
     {
+        private TownMapViewModel tmvm;
         public TownMapPage()
         {
             this.InitializeComponent();
-            DataContext = TownMapViewModel.Instance;
+            tmvm = TownMapViewModel.Instance;
+            DataContext = tmvm;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var value = (TextBlock)e.Parameter;
             value.Text = "TownMap";
+            MapController.MapElements.Add(tmvm.LocationIcon);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            MapController.MapElements.Clear();
+            base.OnNavigatedFrom(e);
         }
     }
 }

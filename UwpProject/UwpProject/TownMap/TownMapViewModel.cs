@@ -4,7 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UwpProject.Model;
 using Windows.Devices.Geolocation;
+using Windows.UI.Xaml.Controls.Maps;
 
 namespace UwpProject.TownMap
 {
@@ -31,10 +33,12 @@ namespace UwpProject.TownMap
             set { _currentLocation = value; }
         }
 
+        public MapIcon LocationIcon { get; }
 
         private TownMapViewModel()
         {
-            SetUpGeolocator();
+            LocationIcon = MapElementFactory.MakeMapIcon(null, new Uri("ms-appx:///Assets/pokebal_16x16.png"), 1);
+            SetUpGeolocator();            
         }
 
         private async void SetUpGeolocator()
@@ -59,8 +63,13 @@ namespace UwpProject.TownMap
         private async void SetCurrentLocation()
         {
             var position = await _locator.GetGeopositionAsync();
-            CurrentLocation = position.Coordinate.Point;
-            Debug.WriteLine($"Latitude: {CurrentLocation.Position.Latitude},Longitude: {CurrentLocation.Position.Longitude}");
+            if(position != null)
+            {
+                CurrentLocation = position.Coordinate.Point;
+                LocationIcon.Location = CurrentLocation;
+                Debug.WriteLine($"Currentlocation Latitude: {CurrentLocation.Position.Latitude},Longitude: {CurrentLocation.Position.Longitude}");
+                Debug.WriteLine($"Mapicon Latitude: {LocationIcon.Location.Position.Latitude},Longitude: {LocationIcon.Location.Position.Longitude}");
+            }
         }
     }
 }
