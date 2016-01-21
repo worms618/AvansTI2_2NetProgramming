@@ -97,7 +97,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\MapElementFactory.cs" />
-    <Compile Include="Model\DistanceKeeper.cs" />
     <Compile Include="Model\WalkKeeper.cs" />
     <Compile Include="MyPokemon\MyPokemonPage.xaml.cs">
       <DependentUpon>MyPokemonPage.xaml</DependentUpon>
