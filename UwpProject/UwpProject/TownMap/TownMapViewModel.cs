@@ -24,6 +24,14 @@ namespace UwpProject.TownMap
 
         private Geolocator _locator;
 
+        private Geopoint _currentLocation;
+        public Geopoint CurrentLocation
+        {
+            get { return _currentLocation; }
+            set { _currentLocation = value; }
+        }
+
+
         private TownMapViewModel()
         {
             SetUpGeolocator();
@@ -35,8 +43,9 @@ namespace UwpProject.TownMap
             switch (response)
             {
                 case GeolocationAccessStatus.Allowed:
-                    Debug.WriteLine("acces allowed");
+                    //Debug.WriteLine("acces allowed");
                     _locator = new Geolocator() { DesiredAccuracy = PositionAccuracy.High };
+                    SetCurrentLocation();
                     break;
                 case GeolocationAccessStatus.Denied:
                     Debug.WriteLine("Acces denied");
@@ -45,6 +54,13 @@ namespace UwpProject.TownMap
                     Debug.WriteLine("Acees unspecified");
                     break;
             }
+        }
+
+        private async void SetCurrentLocation()
+        {
+            var position = await _locator.GetGeopositionAsync();
+            CurrentLocation = position.Coordinate.Point;
+            Debug.WriteLine($"Latitude: {CurrentLocation.Position.Latitude},Longitude: {CurrentLocation.Position.Longitude}");
         }
     }
 }

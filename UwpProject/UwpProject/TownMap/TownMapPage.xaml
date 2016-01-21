@@ -5,9 +5,16 @@
     xmlns:local="using:UwpProject.TownMap"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Maps:MapControl
+            x:Name="MapController"
+            ZoomInteractionMode="GestureAndControl"
+            TiltInteractionMode="GestureAndControl"
+            MapServiceToken="6wnTUTIQl21Kq4hg9RMk~OrRLgdJhMBMWPFIvY8fUvw~Ai9Vsk6zJc1XNmmLbYg_TCAOf96_P3Z6MToemeWmy_Z7xO3xNHH1-Jooc5oUqwUr"
+            LandmarksVisible="True"
+            />
     </Grid>
 </Page>
