@@ -30,6 +30,7 @@ namespace UwpProject
         {
             this.InitializeComponent();
             MyFrame.Navigate(typeof(SplashScreenPage), PageHeader);
+            var create = TownMapViewModel.Instance;
         }
 
         private void MyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -50,6 +51,7 @@ namespace UwpProject
             {
                 MyFrame.Navigate(typeof(SettingsPage), PageHeader);
             }
+            MySplitView.IsPaneOpen = false;
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
