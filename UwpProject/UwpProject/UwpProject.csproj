@@ -101,6 +101,7 @@
     <Compile Include="Encounter\EncounterScreen.xaml.cs">
       <DependentUpon>EncounterScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Encounter\EncounterScreenViewModel.cs" />
     <Compile Include="Model\MapElementFactory.cs" />
     <Compile Include="Model\Places\PokeCenter.cs" />
     <Compile Include="Model\Places\SpecialPlace.cs" />

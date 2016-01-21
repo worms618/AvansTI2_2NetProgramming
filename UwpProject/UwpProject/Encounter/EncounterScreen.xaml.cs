@@ -22,17 +22,18 @@ namespace UwpProject.Encounter
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class EncounterScreen : Page
-    {      
-        
+    {
+        private EncounterScreenViewModel esvm;
         public EncounterScreen()
         {
             this.InitializeComponent();
-            
+            esvm = EncounterScreenViewModel.Instance;
+            DataContext = esvm;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-                      
+            esvm.CurrentPokemon = (PokemonEntry)e.Parameter;           
         }
     }
 }
