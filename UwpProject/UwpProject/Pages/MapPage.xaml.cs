@@ -45,13 +45,11 @@ namespace UwpProject.Pages
             BasicGeoposition bg = new BasicGeoposition { Latitude = 51.803404, Longitude = 4.899284, Altitude = 0.0 };
             MapIcon home = MapElementFactory.MakeIcon(new Geopoint(bg), new Uri("ms-appx:///Assets/home_16x16.png"), 1);
             
-            Geocircle gc = new Geocircle(home.Location.Position, 1);
-            MonitoredGeofenceStates states = MonitoredGeofenceStates.Entered | MonitoredGeofenceStates.Exited | MonitoredGeofenceStates.Removed;
+            Geocircle gc = new Geocircle(home.Location.Position, 25);
+            MonitoredGeofenceStates states = MonitoredGeofenceStates.Entered | MonitoredGeofenceStates.Exited | MonitoredGeofenceStates.Removed | MonitoredGeofenceStates.None;
             Geofence gf = new Geofence("home", gc, states, false, TimeSpan.FromSeconds(1), DateTime.Now, TimeSpan.FromDays(1));
             specialPlaces.Add(new SpecialPlace(gf, home));
-
-            GeofenceMonitor.Current.Geofences.Clear();
-
+                        
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
@@ -70,16 +68,10 @@ namespace UwpProject.Pages
         {
             //Debug.WriteLine("Tick");
             mpwm.SetCurrentLocation();
+            //Debug.WriteLine($"Geofences count: {GeofenceMonitor.Current.Geofences.Count}");
             if (!onetime)
             {
-                MapControler.MapElements.Add(mpwm.CurrentLocationIcon);
                 SetCurrentLocationCenter();
-                foreach(SpecialPlace sp in specialPlaces)
-                {
-                    MapControler.MapElements.Add(sp.Icon);
-                    //MapControler.MapElements.Add(sp.Circle);                    
-                    GeofenceMonitor.Current.Geofences.Add(sp.Fence);
-                }                
                 onetime = true;
             }         
         }
@@ -98,21 +90,6 @@ namespace UwpProject.Pages
             return false;
         }
         
-        private void MapControler_CenterChanged(MapControl sender, object args)
-        {                          
-            //DeleteShapesFromLevel(2);            
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            //Debug.WriteLine("Hoi");      
-            GeofenceMonitor.Current.GeofenceStateChanged += Current_GeofenceStateChanged;
-            GeofenceMonitor.Current.StatusChanged += Current_StatusChanged;
-            
-            timer.Start();
-            base.OnNavigatedTo(e);
-        }
-
         private async void Current_GeofenceStateChanged(GeofenceMonitor sender, object args)
         {            
             var reports = sender.ReadReports();
@@ -141,17 +118,6 @@ namespace UwpProject.Pages
             });
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            //Debug.WriteLine("Dag");
-            GeofenceMonitor.Current.GeofenceStateChanged -= Current_GeofenceStateChanged;
-            GeofenceMonitor.Current.StatusChanged -= Current_StatusChanged;
-            timer.Stop();
-            MapControler.MapElements.Clear();
-            GeofenceMonitor.Current.Geofences.Clear();           
-            base.OnNavigatedFrom(e);
-        }
-
         private void CurrentLocationPin_Click(object sender, RoutedEventArgs e)
         {
             SetCurrentLocationCenter();
@@ -166,6 +132,35 @@ namespace UwpProject.Pages
         private void Mainpage_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MainPage));
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {            
+            GeofenceMonitor.Current.GeofenceStateChanged += Current_GeofenceStateChanged;
+            GeofenceMonitor.Current.StatusChanged += Current_StatusChanged;
+
+            MapControler.MapElements.Add(mpwm.CurrentLocationIcon);
+           
+            foreach (SpecialPlace sp in specialPlaces)
+            {
+                MapControler.MapElements.Add(sp.Icon);
+                //MapControler.MapElements.Add(sp.Circle);                    
+                if (GeofenceMonitor.Current.Geofences.FirstOrDefault(gf1 => gf1.Id == sp.Fence.Id) == null)
+                {
+                    GeofenceMonitor.Current.Geofences.Add(sp.Fence);
+                }
+
+            }
+            timer.Start();
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            GeofenceMonitor.Current.GeofenceStateChanged -= Current_GeofenceStateChanged;
+            GeofenceMonitor.Current.StatusChanged -= Current_StatusChanged;
+            timer.Stop();
+            MapControler.MapElements.Clear();
+            GeofenceMonitor.Current.Geofences.Clear();
         }
     }
 }

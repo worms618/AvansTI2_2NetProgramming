@@ -6,16 +6,29 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="Page_Loaded"
+    Unloaded="Page_Unloaded">
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Name="Mainpage" Label="Ga naar mainpage" Icon="Back" Click="Mainpage_Click"/>
-            <AppBarButton Name="CurrentLocationPin" Label="Ga naar current location" Icon="Flag" Click="CurrentLocationPin_Click"/>            
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Name="Mainpage" Label="Ga naar mainpage" Icon="Back" Click="Mainpage_Click"/>
+                <AppBarButton Name="CurrentLocationPin" Label="Ga naar current location" Icon="Flag" Click="CurrentLocationPin_Click"/>
+            </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
+
+    <Page.Resources>
+        <local:doubleToString x:Key="doubletostring"/>
+    </Page.Resources>
     
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">        
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
         <Maps:MapControl
             x:Name="MapControler"
             ZoomInteractionMode="GestureAndControl"
@@ -23,7 +36,6 @@
             MapServiceToken="6wnTUTIQl21Kq4hg9RMk~OrRLgdJhMBMWPFIvY8fUvw~Ai9Vsk6zJc1XNmmLbYg_TCAOf96_P3Z6MToemeWmy_Z7xO3xNHH1-Jooc5oUqwUr"
             ZoomLevel="18"
             LandmarksVisible="True"            
-            CenterChanged="MapControler_CenterChanged"/>
-        <TextBlock Text="{Binding Meters,Mode=OneWay}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            />        
     </Grid>
 </Page>

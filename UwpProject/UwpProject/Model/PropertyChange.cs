@@ -17,7 +17,7 @@ namespace UwpProject.Model
 
             if (eventhandler != null)
             {
-                System.Diagnostics.Debug.WriteLine($"Property is verandert: {propertyname}");
+                //System.Diagnostics.Debug.WriteLine($"Property is verandert: {propertyname}");
                 eventhandler(this, new PropertyChangedEventArgs(propertyname));
             }
         }

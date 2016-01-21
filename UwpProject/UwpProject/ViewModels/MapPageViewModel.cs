@@ -35,7 +35,7 @@ namespace UwpProject.ViewModels
         public double Meters
         {
             get { return meters; }
-            set { meters = value; OnPropertyChanged(nameof(meters)); }
+            set { meters = value; }
         }
 
         public MapIcon CurrentLocationIcon { get; }
@@ -44,6 +44,7 @@ namespace UwpProject.ViewModels
         {
             SetLocator();
             CurrentLocationIcon = MapElementFactory.MakeIcon(CurrentLocation, new Uri("ms-appx:///Assets/pokebal_16x16.png"), 10);
+            //MakeHomeGeoFence();
         }
 
         public async void SetLocator()
@@ -79,8 +80,7 @@ namespace UwpProject.ViewModels
         {
             if(CurrentLocation != null)
             {
-                Meters += CalculateMeters(CurrentLocation.Position, newPoint);
-                Debug.WriteLine($"Afstand gelopen: {Meters}");
+                Meters += CalculateMeters(CurrentLocation.Position, newPoint);                
             }
         }
 
@@ -104,6 +104,19 @@ namespace UwpProject.ViewModels
         private double rad2deg(double rad)
         {
             return (rad / Math.PI * 180.0);
+        }
+
+        public SpecialPlace Home { get; private set; }
+
+        public void MakeHomeGeoFence()
+        {
+            BasicGeoposition bg = new BasicGeoposition { Latitude = 51.803404, Longitude = 4.899284, Altitude = 0.0 };
+            MapIcon home = MapElementFactory.MakeIcon(new Geopoint(bg), new Uri("ms-appx:///Assets/home_16x16.png"), 1);
+
+            Geocircle gc = new Geocircle(home.Location.Position, 25);
+            MonitoredGeofenceStates states = MonitoredGeofenceStates.Entered | MonitoredGeofenceStates.Exited | MonitoredGeofenceStates.Removed | MonitoredGeofenceStates.None;
+            Geofence gf = new Geofence("home", gc, states, false, TimeSpan.FromSeconds(1), DateTime.Now, TimeSpan.FromDays(1));
+            Home = new SpecialPlace(gf, home);
         }
     }
 }
