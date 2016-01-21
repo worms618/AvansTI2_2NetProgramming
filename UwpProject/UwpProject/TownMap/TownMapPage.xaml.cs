@@ -23,11 +23,18 @@ namespace UwpProject.TownMap
     public sealed partial class TownMapPage : Page
     {
         private TownMapViewModel tmvm;
+        private DispatcherTimer timer;
+        private bool firstTime = false;
+
         public TownMapPage()
         {
             this.InitializeComponent();
             tmvm = TownMapViewModel.Instance;
+            timer = new DispatcherTimer();
             DataContext = tmvm;
+
+            timer.Interval = TimeSpan.FromSeconds(1);//wordt elke seconde getriggerd.
+            timer.Tick += Timer_Tick;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -35,12 +42,26 @@ namespace UwpProject.TownMap
             var value = (TextBlock)e.Parameter;
             value.Text = "TownMap";
             MapController.MapElements.Add(tmvm.LocationIcon);
+            timer.Start();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            timer.Stop();
             MapController.MapElements.Clear();
             base.OnNavigatedFrom(e);
         }
+
+        private void Timer_Tick(object sender, object e)
+        {
+            if(tmvm.CurrentLocation != null && !firstTime)
+            {
+                MapController.Center = tmvm.CurrentLocation;
+                MapController.ZoomLevel = 18;
+                firstTime = true;
+            }
+            tmvm.SetCurrentLocation();
+        }
+
     }
 }

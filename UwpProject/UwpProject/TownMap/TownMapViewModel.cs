@@ -30,7 +30,7 @@ namespace UwpProject.TownMap
         public Geopoint CurrentLocation
         {
             get { return _currentLocation; }
-            set { _currentLocation = value; }
+            set { _currentLocation = value; LocationIcon.Location = value; }
         }
 
         public MapIcon LocationIcon { get; }
@@ -53,23 +53,27 @@ namespace UwpProject.TownMap
                     break;
                 case GeolocationAccessStatus.Denied:
                     Debug.WriteLine("Acces denied");
+                    _locator = null;
                     break;
                 case GeolocationAccessStatus.Unspecified:
                     Debug.WriteLine("Acees unspecified");
+                    _locator = null;
                     break;
             }
         }
 
-        private async void SetCurrentLocation()
+        public async void SetCurrentLocation()
         {
-            var position = await _locator.GetGeopositionAsync();
-            if(position != null)
+            if(_locator != null)
             {
-                CurrentLocation = position.Coordinate.Point;
-                LocationIcon.Location = CurrentLocation;
-                Debug.WriteLine($"Currentlocation Latitude: {CurrentLocation.Position.Latitude},Longitude: {CurrentLocation.Position.Longitude}");
-                Debug.WriteLine($"Mapicon Latitude: {LocationIcon.Location.Position.Latitude},Longitude: {LocationIcon.Location.Position.Longitude}");
-            }
+                var position = await _locator.GetGeopositionAsync();
+                if (position != null)
+                {
+                    CurrentLocation = position.Coordinate.Point;                    
+                    //Debug.WriteLine($"Currentlocation Latitude: {CurrentLocation.Position.Latitude},Longitude: {CurrentLocation.Position.Longitude}");
+                    //Debug.WriteLine($"Mapicon Latitude: {LocationIcon.Location.Position.Latitude},Longitude: {LocationIcon.Location.Position.Longitude}");
+                }
+            }            
         }
     }
 }
