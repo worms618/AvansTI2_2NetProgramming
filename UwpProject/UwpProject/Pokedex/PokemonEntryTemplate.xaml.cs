@@ -31,6 +31,7 @@ namespace UwpProject.Pokedex
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var value = (PokemonEntry)e.Parameter;
+            System.Diagnostics.Debug.WriteLine("Mass  "+value.Weight);
             this.DataContext = value;
         }
     }

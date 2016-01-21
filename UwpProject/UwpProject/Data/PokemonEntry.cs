@@ -22,18 +22,25 @@ namespace UwpProject.Data
         public int SpecialDefense{get; private set;}
         public int Speed{get; private set;}
 
-        public PokemonEntry(int Id, string Name, string Mass, string PokeHeight, int hp, int atk, int def, int spatk, int spdef, int spd)
+        public PokemonEntry(int Id, string Name, string Weight, string PokeHeight, int HP, int Attack, int Defense, int SpecialAttack, int SpecialDefense, int Speed)
         {
             this.Id = Id;
             this.EntryName = "#" + Id + " " + Name;
             this.Name = Name;
-            this.Weight = Mass + " lbs";
-            this.PokeHeight = PokeHeight + "m";
-            this.Attack = atk;
-            this.Defense = def;
-            this.SpecialAttack = spatk;
-            this.SpecialDefense = spdef;
-            this.Speed = spd;
+            this.Weight = Weight;
+            if (PokeHeight.Length < 3)
+            {
+                this.PokeHeight = "0." + PokeHeight;
+            }
+            else
+            {
+                this.PokeHeight = PokeHeight.Insert(PokeHeight.Length - 2, ".");
+            }
+            this.Attack = Attack;
+            this.Defense = Defense;
+            this.SpecialAttack = SpecialAttack;
+            this.SpecialDefense = SpecialDefense;
+            this.Speed = Speed;
 
             this.ImageSource = "ms-appx:///Assets/Sprites/" + this.Id + ".gif";
         }
