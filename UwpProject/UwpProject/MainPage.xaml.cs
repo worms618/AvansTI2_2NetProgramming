@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UwpProject.Encounter;
+using UwpProject.Model;
 using UwpProject.MyPokemon;
 using UwpProject.Pokedex;
 using UwpProject.Settings;
@@ -31,13 +34,25 @@ namespace UwpProject
         {
             this.InitializeComponent();
             MyFrame.Navigate(typeof(SplashScreenPage), PageHeader);
+            var create = TownMapViewModel.Instance;
+            WalkKeeper.EncounterTrigger += WalkKeeper_EncounterTrigger;     
+        }
+
+        private void WalkKeeper_EncounterTrigger(object sender, EventArgs e)
+        {
+            //Debug.WriteLine("Encounter");
+            MyFrame.Navigate(typeof(EncounterScreen), PageHeader);
+            _pokedexPage.IsSelected = false;
+            _pokemonPage.IsSelected = false;
+            _townmapPage.IsSelected = false; 
+            _settingsPage.IsSelected = false;
         }
 
         private void MyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (_pokedexPage.IsSelected)
             {
-                MyFrame.Navigate(typeof(PokedexScreen), PageHeader);
+                MyFrame.Navigate(typeof(PokedexScreen), PageHeader);                
             }
             else if (_pokemonPage.IsSelected)
             {

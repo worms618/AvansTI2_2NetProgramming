@@ -97,6 +97,13 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\PokemonEntry.cs" />
+    <Compile Include="Encounter\EncounterScreen.xaml.cs">
+      <DependentUpon>EncounterScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MapElementFactory.cs" />
+    <Compile Include="Model\Places\PokeCenter.cs" />
+    <Compile Include="Model\Places\SpecialPlace.cs" />
+    <Compile Include="Model\WalkKeeper.cs" />
     <Compile Include="MyPokemon\MyPokemonPage.xaml.cs">
       <DependentUpon>MyPokemonPage.xaml</DependentUpon>
     </Compile>
@@ -119,6 +126,7 @@
     <Compile Include="TownMap\TownMapPage.xaml.cs">
       <DependentUpon>TownMapPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TownMap\TownMapViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -130,6 +138,8 @@
     <None Include="UwpProject_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\home_16x16_1.png" />
+    <Content Include="Assets\home_16x16_2.png" />
     <Content Include="Assets\pokeball50x50.png" />
     <Content Include="Assets\Sprites\1.gif" />
     <Content Include="Assets\Sprites\10.gif" />
@@ -382,6 +392,7 @@
     <Content Include="Assets\Sprites\97.gif" />
     <Content Include="Assets\Sprites\98.gif" />
     <Content Include="Assets\Sprites\99.gif" />
+    <Content Include="Assets\pokebal_16x16.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -396,6 +407,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Encounter\EncounterScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MyPokemon\MyPokemonPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -426,10 +441,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="PokeApi.NET, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\PokeApi.NET\PokeApi.NET\bin\Debug\PokeApi.NET.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\..\pokemonApi\PokeApi.NET\PokeApi.NET.csproj">
+      <Project>{b957f608-502a-496e-b26c-666eafbec985}</Project>
+      <Name>PokeApi.NET</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
