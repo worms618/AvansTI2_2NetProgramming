@@ -9,14 +9,15 @@ namespace UwpProject.Model
 {
     public class WalkKeeper
     {
-        public event EventHandler EncounterTrigger;
-        private  void EncouterTriggerd()
+        public static event EventHandler EncounterTrigger;
+        public void EncouterTriggerd()
         {
-            var handler = EncounterTrigger;
-            if(handler != null)
-            {
-                handler(null, new EventArgs());
-            }
+            
+                var handler = EncounterTrigger;
+                if(handler != null)
+                {
+                    handler(null, new EventArgs());
+                }
         }
 
         private double _totalMeters = 0;
@@ -27,14 +28,15 @@ namespace UwpProject.Model
             EncounterMeters = 5.0;
         }
 
-        public void Walk(BasicGeoposition old, BasicGeoposition New)
+        public bool Walk(BasicGeoposition old, BasicGeoposition New)
         {
             _totalMeters += CalculateMeters(old, New);
             if(_totalMeters >= EncounterMeters)
-            {
-                EncouterTriggerd();
+            {                      
                 _totalMeters = 0.0;
+                return true;
             }
+            return false;
         }
 
         private double CalculateMeters(BasicGeoposition first, BasicGeoposition second)

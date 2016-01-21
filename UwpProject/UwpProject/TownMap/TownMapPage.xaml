@@ -14,7 +14,7 @@
             ZoomInteractionMode="GestureAndControl"
             TiltInteractionMode="GestureAndControl"
             MapServiceToken="6wnTUTIQl21Kq4hg9RMk~OrRLgdJhMBMWPFIvY8fUvw~Ai9Vsk6zJc1XNmmLbYg_TCAOf96_P3Z6MToemeWmy_Z7xO3xNHH1-Jooc5oUqwUr"
-            LandmarksVisible="True"
+            LandmarksVisible="True"            
             />
     </Grid>
 </Page>

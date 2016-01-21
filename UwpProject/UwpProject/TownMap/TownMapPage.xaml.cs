@@ -45,14 +45,14 @@ namespace UwpProject.TownMap
 
         private async void Current_GeofenceStateChanged(GeofenceMonitor sender, object args)
         {
-            Debug.WriteLine("Geofence state changed");
+            //Debug.WriteLine("Geofence state changed");
             var reports = sender.ReadReports();
             foreach(GeofenceStateChangeReport report in reports)
             {
                 GeofenceState state = report.NewState;
                 Geofence geofence = report.Geofence;
                 SpecialPlace specialPlace = tmvm.SpecialPlaces.Where(s => s.Id == geofence.Id).FirstOrDefault();
-                Debug.WriteLine($"fence id: {geofence.Id}");
+                //Debug.WriteLine($"fence id: {geofence.Id}");
                 if(state == GeofenceState.Removed)
                 {
                     GeofenceMonitor.Current.Geofences.Remove(geofence);
@@ -62,7 +62,7 @@ namespace UwpProject.TownMap
                     await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                      {
                          specialPlace.inSide = true;
-                         Debug.WriteLine("ik ben binnen huis bereik :$");
+                         //Debug.WriteLine("ik ben binnen huis bereik :$");
                      });
                 }else if(state == GeofenceState.Exited)
                 {
@@ -70,7 +70,7 @@ namespace UwpProject.TownMap
                     await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         specialPlace.inSide = false;
-                        Debug.WriteLine("Ik ben niet meer binnen huis bereik :(");
+                        //Debug.WriteLine("Ik ben niet meer binnen huis bereik :(");
                     });                    
                 }
             }

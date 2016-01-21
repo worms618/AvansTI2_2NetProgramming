@@ -28,7 +28,7 @@ namespace UwpProject.Model
         public SpecialPlace(string id,BasicGeoposition point,Uri state1,Uri state2)
         {
             this.Id = id;
-            Geocircle area = new Geocircle(point, 25);
+            Geocircle area = new Geocircle(point, 10);
             MonitoredGeofenceStates states = MonitoredGeofenceStates.Entered | MonitoredGeofenceStates.Exited;
             Fence = new Geofence(Id, area, states, false, TimeSpan.FromSeconds(1));
 

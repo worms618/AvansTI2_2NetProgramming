@@ -96,6 +96,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Encounter\EncounterScreen.xaml.cs">
+      <DependentUpon>EncounterScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\MapElementFactory.cs" />
     <Compile Include="Model\Places\PokeCenter.cs" />
     <Compile Include="Model\Places\SpecialPlace.cs" />
@@ -149,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Encounter\EncounterScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MyPokemon\MyPokemonPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -38,11 +38,13 @@ namespace UwpProject.TownMap
 
         public List<SpecialPlace> SpecialPlaces { get; }
 
+        private bool Encounter = true;
+        private int changeOfEncounter = 50;
         private TownMapViewModel()
         {
             LocationIcon = MapElementFactory.MakeMapIcon(null, new Uri("ms-appx:///Assets/pokebal_16x16.png"), 1);
             walker = new WalkKeeper();
-            walker.EncounterTrigger += Walker_EncounterTrigger;
+            
             SpecialPlaces = new List<SpecialPlace>();
             SpecialPlaces.Add(new PokeCenter("Pokecenter",new BasicGeoposition { Latitude = 51.806380 , Longitude = 4.896346 }));            
             SetUpGeolocator();                        
@@ -78,18 +80,27 @@ namespace UwpProject.TownMap
                 {
                     if(CurrentLocation != null)
                     {
-                        walker.Walk(CurrentLocation.Position, position.Coordinate.Point.Position);
+                        if(walker.Walk(CurrentLocation.Position, position.Coordinate.Point.Position))
+                        {
+                            Debug.WriteLine($"Encounter: {Encounter}, Change of encounter: {changeOfEncounter}");
+                            if(new Random().Next(100) < changeOfEncounter && !Encounter)
+                            {
+                                Encounter = true;
+                                changeOfEncounter = 50;
+                                walker.EncouterTriggerd();                                
+                            }
+                            else
+                            {
+                                Encounter = false;
+                                changeOfEncounter += 5;
+                            }                                
+                        }
                     }                    
                     CurrentLocation = position.Coordinate.Point;                   
                     //Debug.WriteLine($"Currentlocation Latitude: {CurrentLocation.Position.Latitude},Longitude: {CurrentLocation.Position.Longitude}");
                     //Debug.WriteLine($"Mapicon Latitude: {LocationIcon.Location.Position.Latitude},Longitude: {LocationIcon.Location.Position.Longitude}");                    
                 }
             }            
-        }        
-
-        private void Walker_EncounterTrigger(object sender, EventArgs e)
-        {
-            Debug.WriteLine($"Encouter is gekomen!");            
-        }        
+        }      
     }
 }
