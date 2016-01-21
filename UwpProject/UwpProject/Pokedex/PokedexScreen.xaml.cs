@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using PokeAPI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,7 +29,6 @@ namespace UwpProject.Pokedex
     /// </summary>
     public sealed partial class PokedexScreen : Page
     {
-        
         public List<PokemonEntry> Entries
         {
             get { return (List<PokemonEntry>)GetValue(EntryProperty); }

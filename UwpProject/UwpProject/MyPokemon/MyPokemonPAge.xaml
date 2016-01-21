@@ -9,5 +9,31 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="NaamPokemon1" Text="{Binding naam}" HorizontalAlignment="Center" FontSize="16" />
+        <TextBlock x:Name="NaamPokemon2" Text="{Binding naam}" Grid.Column="1" HorizontalAlignment="Center" FontSize="16" />
+        <TextBlock x:Name="NaamPokemon3" Text="{Binding naam}" Grid.Row="2"  HorizontalAlignment="Center" FontSize="16" />
+        <TextBlock x:Name="NaamPokemon4" Text="{Binding naam}" Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Center" FontSize="16" />
+        <TextBlock x:Name="NaamPokemon5" Text="{Binding naam}" Grid.Row="4" HorizontalAlignment="Center" FontSize="16" />
+        <TextBlock x:Name="NaamPokemon6" Text="{Binding naam}" Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Center" FontSize="16" />
+
+        <Image x:Name="Pokemon1" Grid.Row="1"  Tapped="Pokemon1_Tapped"/>
+        <Image x:Name="Pokemon2" Grid.Row="1" Grid.Column="1" Tapped="Pokemon2_Tapped"/>
+        <Image x:Name="Pokemon3" Grid.Row="3" Tapped="Pokemon3_Tapped"/>
+        <Image x:Name="Pokemon4" Grid.Row="3" Grid.Column="1"  Tapped="Pokemon4_Tapped"/>
+        <Image x:Name="Pokemon5" Grid.Row="5" Tapped="Pokemon5_Tapped"/>
+        <Image x:Name="Pokemon6" Grid.Row="5" Grid.Column="1"  Tapped="Pokemon6_Tapped"/>
     </Grid>
 </Page>

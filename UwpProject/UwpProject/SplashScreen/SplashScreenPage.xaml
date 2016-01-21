@@ -7,7 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid Background="White">
+        <TextBlock TextWrapping="WrapWholeWords" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontSize="30">
+            MAAK JE KLAAR OM DE AllER GROOTSTE POKEMONMEESTERRRR VAN ALLE TIJDEN TE WORDEN!
+        </TextBlock>
     </Grid>
 </Page>

@@ -10,6 +10,7 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="300"/>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <RelativePanel Background="#211D1C">
@@ -36,7 +37,25 @@
                 <TextBlock FontWeight="Medium" Text="Height:" Width="100"/>
                 <TextBlock Text="{Binding PokeHeight}"/>
             </StackPanel>
-            
         </StackPanel>
+        <Grid Grid.Row="2" Margin="0,40,0,40">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Rectangle HorizontalAlignment="Left" Fill="#DA3B3F" Margin="4" Width="{Binding Attack}"/>
+            <TextBlock Margin="10,0,0,0" Foreground="White" Text="ATK"/>
+            <Rectangle HorizontalAlignment="Left" Grid.Row="1" Fill="#DA3B3F" Margin="4" Width="{Binding Defense}"/>
+            <TextBlock Margin="10,0,0,0" Foreground="White" Text="DEF" Grid.Row="1" />
+            <Rectangle HorizontalAlignment="Left" Grid.Row="2" Fill="#DA3B3F" Margin="4" Width="{Binding SpecialAttack}"/>
+            <TextBlock Margin="10,0,0,0" Foreground="White" Text="SPATK" Grid.Row="2" />
+            <Rectangle HorizontalAlignment="Left" Grid.Row="3" Fill="#DA3B3F" Margin="4" Width="{Binding SpecialDefense}"/>
+            <TextBlock Margin="10,0,0,0" Foreground="White" Text="SPDEF" Grid.Row="3" />
+            <Rectangle HorizontalAlignment="Left" Grid.Row="4" Fill="#DA3B3F" Margin="4" Width="{Binding Speed}"/>
+            <TextBlock Margin="10,0,0,0" Foreground="White" Text="SPD" Grid.Row="4" />
+        </Grid>
     </Grid>
 </Page>
