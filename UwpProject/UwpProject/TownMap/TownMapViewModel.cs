@@ -35,9 +35,13 @@ namespace UwpProject.TownMap
 
         public MapIcon LocationIcon { get; }
 
+        private WalkKeeper walker;
+
         private TownMapViewModel()
         {
             LocationIcon = MapElementFactory.MakeMapIcon(null, new Uri("ms-appx:///Assets/pokebal_16x16.png"), 1);
+            walker = new WalkKeeper();
+            walker.EncounterTrigger += Walker_EncounterTrigger;
             SetUpGeolocator();            
         }
 
@@ -61,7 +65,7 @@ namespace UwpProject.TownMap
                     break;
             }
         }
-
+        
         public async void SetCurrentLocation()
         {
             if(_locator != null)
@@ -69,11 +73,23 @@ namespace UwpProject.TownMap
                 var position = await _locator.GetGeopositionAsync();
                 if (position != null)
                 {
-                    CurrentLocation = position.Coordinate.Point;                    
+                    if(CurrentLocation != null)
+                    {
+                        walker.Walk(CurrentLocation.Position, position.Coordinate.Point.Position);
+                    }                    
+                    CurrentLocation = position.Coordinate.Point;                   
                     //Debug.WriteLine($"Currentlocation Latitude: {CurrentLocation.Position.Latitude},Longitude: {CurrentLocation.Position.Longitude}");
-                    //Debug.WriteLine($"Mapicon Latitude: {LocationIcon.Location.Position.Latitude},Longitude: {LocationIcon.Location.Position.Longitude}");
+                    //Debug.WriteLine($"Mapicon Latitude: {LocationIcon.Location.Position.Latitude},Longitude: {LocationIcon.Location.Position.Longitude}");                    
                 }
             }            
+        }
+
+        private int counter = 0;
+
+        private void Walker_EncounterTrigger(object sender, EventArgs e)
+        {
+            Debug.WriteLine($"Encouter is gekomen! {counter}");
+            counter++;
         }
     }
 }
