@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -30,9 +31,9 @@ namespace UwpProject
         {
             this.InitializeComponent();
             MyFrame.Navigate(typeof(SplashScreenPage), PageHeader);
-            var create = TownMapViewModel.Instance;
+            var create = TownMapViewModel.Instance;            
         }
-
+        
         private void MyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (_pokedexPage.IsSelected)

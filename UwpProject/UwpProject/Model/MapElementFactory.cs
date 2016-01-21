@@ -34,6 +34,6 @@ namespace UwpProject.Model
                 Debug.WriteLine(e.Message + "\n" + e.StackTrace);
                 return null;
             }
-        }
+        }        
     }
 }

@@ -97,6 +97,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\MapElementFactory.cs" />
+    <Compile Include="Model\Places\PokeCenter.cs" />
+    <Compile Include="Model\Places\SpecialPlace.cs" />
     <Compile Include="Model\WalkKeeper.cs" />
     <Compile Include="MyPokemon\MyPokemonPage.xaml.cs">
       <DependentUpon>MyPokemonPage.xaml</DependentUpon>
@@ -129,6 +131,8 @@
     <None Include="UwpProject_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\home_16x16_1.png" />
+    <Content Include="Assets\home_16x16_2.png" />
     <Content Include="Assets\pokeball50x50.png" />
     <Content Include="Assets\pokebal_16x16.png" />
     <Content Include="Properties\Default.rd.xml" />

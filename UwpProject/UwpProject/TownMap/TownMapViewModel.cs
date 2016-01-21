@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UwpProject.Model;
+using UwpProject.Model.Places;
 using Windows.Devices.Geolocation;
+using Windows.Devices.Geolocation.Geofencing;
 using Windows.UI.Xaml.Controls.Maps;
 
 namespace UwpProject.TownMap
@@ -37,12 +36,16 @@ namespace UwpProject.TownMap
 
         private WalkKeeper walker;
 
+        public List<SpecialPlace> SpecialPlaces { get; }
+
         private TownMapViewModel()
         {
             LocationIcon = MapElementFactory.MakeMapIcon(null, new Uri("ms-appx:///Assets/pokebal_16x16.png"), 1);
             walker = new WalkKeeper();
             walker.EncounterTrigger += Walker_EncounterTrigger;
-            SetUpGeolocator();            
+            SpecialPlaces = new List<SpecialPlace>();
+            SpecialPlaces.Add(new PokeCenter("Pokecenter",new BasicGeoposition { Latitude = 51.806380 , Longitude = 4.896346 }));            
+            SetUpGeolocator();                        
         }
 
         private async void SetUpGeolocator()
@@ -82,14 +85,11 @@ namespace UwpProject.TownMap
                     //Debug.WriteLine($"Mapicon Latitude: {LocationIcon.Location.Position.Latitude},Longitude: {LocationIcon.Location.Position.Longitude}");                    
                 }
             }            
-        }
-
-        private int counter = 0;
+        }        
 
         private void Walker_EncounterTrigger(object sender, EventArgs e)
         {
-            Debug.WriteLine($"Encouter is gekomen! {counter}");
-            counter++;
-        }
+            Debug.WriteLine($"Encouter is gekomen!");            
+        }        
     }
 }
