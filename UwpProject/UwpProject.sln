@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UwpProject", "UwpProject\UwpProject.csproj", "{E0D89356-6A7A-4971-A52E-9ED54762CEB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeApi.NET", "..\PokeApi.NET\PokeApi.NET\PokeApi.NET.csproj", "{B957F608-502A-496E-B26C-666EAFBEC985}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeApi.NET", "..\..\pokemonApi\PokeApi.NET\PokeApi.NET.csproj", "{B957F608-502A-496E-B26C-666EAFBEC985}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
