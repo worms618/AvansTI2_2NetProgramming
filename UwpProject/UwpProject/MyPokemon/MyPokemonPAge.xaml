@@ -9,5 +9,31 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Bulbasaur" HorizontalAlignment="Center" FontSize="16" />
+        <TextBlock Text="Mankey" Grid.Column="1" HorizontalAlignment="Center" FontSize="16" />
+        <TextBlock Text="Ekans" Grid.Row="2"  HorizontalAlignment="Center" FontSize="16" />
+        <TextBlock Text="Grimer" Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Center" FontSize="16" />
+        <TextBlock Text="Dratini" Grid.Row="4" HorizontalAlignment="Center" FontSize="16" />
+        <TextBlock Text="Bulbasaur" Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Center" FontSize="16" />
+
+        <Image x:Name="Pokemon1" Grid.Row="1"  Source="ms-appx:///Assets/Sprites/1.gif" Tapped="Pokemon1_Tapped"/>
+        <Image x:Name="Pokemon2" Grid.Row="1" Grid.Column="1"  Source="ms-appx:///Assets/Sprites/56.gif" Tapped="Pokemon2_Tapped"/>
+        <Image x:Name="Pokemon3" Grid.Row="3" Source="ms-appx:///Assets/Sprites/23.gif" Tapped="Pokemon3_Tapped"/>
+        <Image x:Name="Pokemon4" Grid.Row="3" Grid.Column="1"  Source="ms-appx:///Assets/Sprites/88.gif" Tapped="Pokemon4_Tapped"/>
+        <Image x:Name="Pokemon5" Grid.Row="5" Source="ms-appx:///Assets/Sprites/147.gif" Tapped="Pokemon5_Tapped"/>
+        <Image x:Name="Pokemon6" Grid.Row="5" Grid.Column="1"  Source="ms-appx:///Assets/Sprites/98.gif" Tapped="Pokemon6_Tapped"/>
     </Grid>
 </Page>
