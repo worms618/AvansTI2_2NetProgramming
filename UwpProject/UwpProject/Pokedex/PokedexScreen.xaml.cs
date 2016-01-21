@@ -30,7 +30,7 @@ namespace UwpProject.Pokedex
     /// </summary>
     public sealed partial class PokedexScreen : Page
     {
-        public List<PokeAPI.Pokemon> Items;
+        
         public List<PokemonEntry> Entries
         {
             get { return (List<PokemonEntry>)GetValue(EntryProperty); }
@@ -61,6 +61,7 @@ namespace UwpProject.Pokedex
                 Entries.Add(JsonConvert.DeserializeObject<PokemonEntry>(pokemonentry.ToString()));
             }
             System.Diagnostics.Debug.WriteLine(Entries.Count);
+            MyPokedex.Instance.Pokedex = Entries;
         }
 
         //private async Task getPokemonInstance()

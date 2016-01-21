@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UwpProject.Data;
 using UwpProject.Encounter;
 using UwpProject.Model;
 using UwpProject.MyPokemon;
@@ -41,11 +42,17 @@ namespace UwpProject
         private void WalkKeeper_EncounterTrigger(object sender, EventArgs e)
         {
             //Debug.WriteLine("Encounter");
-            MyFrame.Navigate(typeof(EncounterScreen), PageHeader);
-            _pokedexPage.IsSelected = false;
-            _pokemonPage.IsSelected = false;
-            _townmapPage.IsSelected = false; 
-            _settingsPage.IsSelected = false;
+            MyPokedex mp = MyPokedex.Instance;
+            if(mp.Pokedex != null)
+            {
+                PokemonEntry pokemon = mp.Pokedex.ElementAt(new Random().Next(mp.Pokedex.Count));
+                MyFrame.Navigate(typeof(EncounterScreen), pokemon);
+                PageHeader.Text = pokemon.Name;
+                _pokedexPage.IsSelected = false;
+                _pokemonPage.IsSelected = false;
+                _townmapPage.IsSelected = false;
+                _settingsPage.IsSelected = false;
+            }
         }
 
         private void MyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

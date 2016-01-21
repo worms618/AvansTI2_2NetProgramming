@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UwpProject.Data;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,15 +23,17 @@ namespace UwpProject.Encounter
     /// </summary>
     public sealed partial class EncounterScreen : Page
     {
+        private PokemonEntry _current;
+
         public EncounterScreen()
         {
             this.InitializeComponent();
+            DataContext = _current;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var value = (TextBlock)e.Parameter;
-            value.Text = "Encounter";
+            _current = (PokemonEntry)e.Parameter;           
         }
     }
 }

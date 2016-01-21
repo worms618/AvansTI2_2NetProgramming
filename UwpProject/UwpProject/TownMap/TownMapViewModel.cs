@@ -83,7 +83,7 @@ namespace UwpProject.TownMap
                         if(walker.Walk(CurrentLocation.Position, position.Coordinate.Point.Position))
                         {
                             Debug.WriteLine($"Encounter: {Encounter}, Change of encounter: {changeOfEncounter}");
-                            if(new Random().Next(100) < changeOfEncounter && !Encounter)
+                            if(true)//new Random().Next(100) < changeOfEncounter && !Encounter
                             {
                                 Encounter = true;
                                 changeOfEncounter = 50;
