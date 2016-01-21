@@ -36,11 +36,11 @@ namespace UwpProject.Data
             {
                 this.PokeHeight = PokeHeight.Insert(PokeHeight.Length - 2, ".");
             }
-            this.Attack = Attack;
-            this.Defense = Defense;
-            this.SpecialAttack = SpecialAttack;
-            this.SpecialDefense = SpecialDefense;
-            this.Speed = Speed;
+            this.Attack = Attack *2;
+            this.Defense = Defense *2;
+            this.SpecialAttack = SpecialAttack *2;
+            this.SpecialDefense = SpecialDefense *2;
+            this.Speed = Speed *2;
 
             this.ImageSource = "ms-appx:///Assets/Sprites/" + this.Id + ".gif";
         }
