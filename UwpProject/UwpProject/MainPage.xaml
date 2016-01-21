@@ -50,7 +50,7 @@
                 </StackPanel>
             </SplitView.Pane>
             <SplitView.Content>
-                <Frame Name="MyFrame">
+                <Frame x:Name="MyFrame">
                 </Frame>
             </SplitView.Content>
         </SplitView>

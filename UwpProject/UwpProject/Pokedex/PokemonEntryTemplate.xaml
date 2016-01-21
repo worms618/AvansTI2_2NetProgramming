@@ -7,7 +7,36 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <RelativePanel Background="#211D1C">
+            <Ellipse Height="170" Width="170" Fill="White"
+                     RelativePanel.AlignHorizontalCenterWithPanel="True"
+                     RelativePanel.AlignVerticalCenterWithPanel="True"/>
+            <Image  Height="120" MaxWidth="120"
+                    Source="{Binding ImageSource}"
+                    RelativePanel.AlignHorizontalCenterWithPanel="True"
+                    RelativePanel.AlignVerticalCenterWithPanel="True"/>
+            <TextBlock Foreground="White"
+                       FontSize="14"
+                       Text="{Binding EntryName}"
+                       RelativePanel.AlignLeftWithPanel="True"
+                       RelativePanel.AlignBottomWithPanel="True"
+                       Margin="10,0,0,10"/>
+        </RelativePanel>
+        <StackPanel Grid.Row="1" Margin="10,5,0,0">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontWeight="Medium" Text="Weight:" Width="100"/>
+                <TextBlock Text="{Binding Weight}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontWeight="Medium" Text="Height:" Width="100"/>
+                <TextBlock Text="{Binding PokeHeight}"/>
+            </StackPanel>
+            
+        </StackPanel>
     </Grid>
 </Page>

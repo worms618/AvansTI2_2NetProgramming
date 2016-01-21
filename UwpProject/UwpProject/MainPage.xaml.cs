@@ -26,6 +26,7 @@ namespace UwpProject
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -50,6 +51,7 @@ namespace UwpProject
             {
                 MyFrame.Navigate(typeof(SettingsPage), PageHeader);
             }
+            MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -76,6 +78,5 @@ namespace UwpProject
                 MyFrame.GoForward();
             }
         }
-
     }
 }
