@@ -25,6 +25,7 @@ namespace UwpProject.TownMap
         public TownMapPage()
         {
             this.InitializeComponent();
+            DataContext = TownMapViewModel.Instance;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

@@ -118,6 +118,7 @@
     <Compile Include="TownMap\TownMapPage.xaml.cs">
       <DependentUpon>TownMapPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TownMap\TownMapViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -171,10 +172,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="PokeApi.NET, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\PokeApi.NET\PokeApi.NET\bin\Debug\PokeApi.NET.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\..\pokemonApi\PokeApi.NET\PokeApi.NET.csproj">
+      <Project>{b957f608-502a-496e-b26c-666eafbec985}</Project>
+      <Name>PokeApi.NET</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
