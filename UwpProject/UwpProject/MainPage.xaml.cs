@@ -47,7 +47,19 @@ namespace UwpProject
         {
             if (MyFrame.CanGoBack)
             {
-                MyFrame.GoBack();
+                //Debug.WriteLine($"{MyFrame.BackStack.Count}");
+                //foreach (var frame in MyFrame.BackStack)
+                //{
+                //    Debug.WriteLine($"{frame.SourcePageType}");
+                //}
+                Type lastscreen = MyFrame.BackStack.ElementAt(MyFrame.BackStack.Count - 1).SourcePageType;
+                //Debug.WriteLine($"{lastscreen}");
+                bool same = lastscreen == typeof(EncounterScreen);
+                //Debug.WriteLine($"Same: {same}");    
+                if(!same)
+                {
+                    MyFrame.GoBack();                    
+                }
                 e.Handled = true;
             }
         }

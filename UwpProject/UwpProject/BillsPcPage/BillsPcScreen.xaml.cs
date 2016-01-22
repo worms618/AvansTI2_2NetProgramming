@@ -46,7 +46,7 @@ namespace UwpProject.BillsPcPage
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var value = (TextBlock)e.Parameter;
-            value.Text = "Pokédex";
+            value.Text = "Bills pc";
         }
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)

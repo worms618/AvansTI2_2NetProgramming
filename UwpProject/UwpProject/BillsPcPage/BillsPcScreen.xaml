@@ -9,7 +9,14 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ListView Background="White" ItemsSource="{x:Bind myPokemon}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
-
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Image Source="{Binding ImageSource,Mode=OneWay}" Width="40" Height="40"/>
+                        <TextBlock Text="{Binding Name,Mode=OneWay}" VerticalAlignment="Center" Margin="15,0,0,0"/>                        
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>            
         </ListView>
     </Grid>
 </Page>
