@@ -34,6 +34,12 @@
                                 <TextBlock Margin="18,0,0,0" Text="Pokémon" FontSize="16" VerticalAlignment="Center" Foreground="White"/>
                             </StackPanel>
                         </ListBoxItem>
+                        <ListBoxItem Name="_billsPcPage">
+                            <StackPanel Margin="4,0,0,0" Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE128;" Foreground="White" VerticalAlignment="Center" />
+                                <TextBlock Margin="18,0,0,0" Text="BillsPc" FontSize="16" VerticalAlignment="Center" Foreground="White"/>
+                            </StackPanel>
+                        </ListBoxItem>
                         <ListBoxItem Name="_townmapPage">
                             <StackPanel Margin="4,0,0,0" Orientation="Horizontal">
                                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE128;" Foreground="White" VerticalAlignment="Center" />

@@ -96,6 +96,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BillsPcPage\BillsPcScreen.xaml.cs">
+      <DependentUpon>BillsPcScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data\BillsPc.cs" />
     <Compile Include="Data\PokemonEntry.cs" />
     <Compile Include="Encounter\EncounterScreen.xaml.cs">
@@ -410,6 +413,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="BillsPcPage\BillsPcScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Encounter\EncounterScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

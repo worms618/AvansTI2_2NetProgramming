@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UwpProject.BillsPcPage;
 using UwpProject.Data;
 using UwpProject.Encounter;
 using UwpProject.Model;
@@ -13,6 +14,7 @@ using UwpProject.Settings;
 using UwpProject.TownMap;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -37,7 +39,17 @@ namespace UwpProject
             MyFrame.Navigate(typeof(SplashScreenPage), PageHeader);
             var create = TownMapViewModel.Instance;
             var pc = BillsPc.Instance;
-            WalkKeeper.EncounterTrigger += WalkKeeper_EncounterTrigger;     
+            WalkKeeper.EncounterTrigger += WalkKeeper_EncounterTrigger;
+            SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
+        }
+
+        private void MainPage_BackRequested(object sender, BackRequestedEventArgs e)
+        {
+            if (MyFrame.CanGoBack)
+            {
+                MyFrame.GoBack();
+                e.Handled = true;
+            }
         }
 
         private void WalkKeeper_EncounterTrigger(object sender, EventArgs e)
@@ -66,6 +78,10 @@ namespace UwpProject
             else if (_pokemonPage.IsSelected)
             {
                 MyFrame.Navigate(typeof(MyPokemonPage), PageHeader);
+            }
+            else if (_billsPcPage.IsSelected)
+            {
+                MyFrame.Navigate(typeof(BillsPcScreen), PageHeader);
             }
             else if (_townmapPage.IsSelected)
             {
