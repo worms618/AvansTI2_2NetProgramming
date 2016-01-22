@@ -36,17 +36,19 @@ namespace UwpProject
             this.InitializeComponent();
             MyFrame.Navigate(typeof(SplashScreenPage), PageHeader);
             var create = TownMapViewModel.Instance;
+            var pc = BillsPc.Instance;
             WalkKeeper.EncounterTrigger += WalkKeeper_EncounterTrigger;     
         }
 
         private void WalkKeeper_EncounterTrigger(object sender, EventArgs e)
         {
             //Debug.WriteLine("Encounter");
-            MyPokedex mp = MyPokedex.Instance;
-            if(mp.Pokedex != null)
+            var pc = BillsPc.Instance;
+            if(pc.Entries != null)
             {
-                PokemonEntry pokemon = mp.Pokedex.ElementAt(new Random().Next(mp.Pokedex.Count));
-                MyFrame.Navigate(typeof(EncounterScreen), pokemon);
+                PokemonEntry pokemon = pc.Entries.ElementAt(new Random().Next(pc.Entries.Count));
+                Tuple<PokemonEntry, Frame,TextBlock> send = new Tuple<PokemonEntry, Frame,TextBlock>(pokemon, MyFrame,PageHeader);
+                MyFrame.Navigate(typeof(EncounterScreen), send);
                 PageHeader.Text = pokemon.Name;
                 _pokedexPage.IsSelected = false;
                 _pokemonPage.IsSelected = false;

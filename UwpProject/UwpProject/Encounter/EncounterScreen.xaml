@@ -8,6 +8,19 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Image x:Name="image" Source="{Binding CurrentPokemon.ImageSource,Mode=OneWay}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        
+        <Image x:Name="image" Source="{Binding CurrentPokemon.ImageSource,Mode=OneWay}" Grid.ColumnSpan="2"/>
+        <Button x:Name="Catch" Content="Catch" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Click="Catch_Click"/>
+        <Button x:Name="Fled" Content="Feld" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Click="Fled_Click"/>
     </Grid>
 </Page>

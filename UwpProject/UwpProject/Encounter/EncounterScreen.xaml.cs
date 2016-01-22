@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UwpProject.Data;
+using UwpProject.TownMap;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -24,6 +25,8 @@ namespace UwpProject.Encounter
     public sealed partial class EncounterScreen : Page
     {
         private EncounterScreenViewModel esvm;
+        private Frame myFrame;
+        private TextBlock pageHeader;
         public EncounterScreen()
         {
             this.InitializeComponent();
@@ -33,7 +36,26 @@ namespace UwpProject.Encounter
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            esvm.CurrentPokemon = (PokemonEntry)e.Parameter;           
+            Tuple<PokemonEntry, Frame,TextBlock> send = (Tuple<PokemonEntry, Frame,TextBlock>)e.Parameter;
+            esvm.CurrentPokemon = send.Item1;
+            myFrame = send.Item2;
+            pageHeader = send.Item3;
+        }
+
+        private void Catch_Click(object sender, RoutedEventArgs e)
+        {
+            esvm.Catch();
+            BackToMap();
+        }
+
+        private void Fled_Click(object sender, RoutedEventArgs e)
+        {
+            BackToMap();
+        }
+
+        private void BackToMap()
+        {
+            myFrame.Navigate(typeof(TownMapPage), pageHeader);
         }
     }
 }

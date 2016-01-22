@@ -96,12 +96,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data\MyPokedex.cs" />
+    <Compile Include="Data\BillsPc.cs" />
     <Compile Include="Data\PokemonEntry.cs" />
     <Compile Include="Encounter\EncounterScreen.xaml.cs">
       <DependentUpon>EncounterScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Encounter\EncounterScreenViewModel.cs" />
+    <Compile Include="Model\DelegateCommand.cs" />
     <Compile Include="Model\MapElementFactory.cs" />
     <Compile Include="Model\Places\PokeCenter.cs" />
     <Compile Include="Model\Places\SpecialPlace.cs" />

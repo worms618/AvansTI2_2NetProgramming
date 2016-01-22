@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using UwpProject.Data;
+using UwpProject.Model;
 
 namespace UwpProject.Encounter 
 {
@@ -34,7 +37,7 @@ namespace UwpProject.Encounter
                 eventhandler(this, new PropertyChangedEventArgs(propertyname));
             }
         }
-
+        
         private PokemonEntry _currentPokemon;
         public PokemonEntry CurrentPokemon
         {
@@ -44,7 +47,13 @@ namespace UwpProject.Encounter
 
         private EncounterScreenViewModel()
         {
+            
+        }
 
+        public void Catch()
+        {
+            BillsPc.Instance.MyPokemon.Add(CurrentPokemon);
+            Debug.WriteLine($"{BillsPc.Instance.MyPokemon.Count}");
         }
     }
 }

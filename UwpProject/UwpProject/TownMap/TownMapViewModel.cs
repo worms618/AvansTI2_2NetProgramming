@@ -37,8 +37,7 @@ namespace UwpProject.TownMap
         private WalkKeeper walker;
 
         public List<SpecialPlace> SpecialPlaces { get; }
-
-        private bool Encounter = true;
+        
         private int changeOfEncounter = 50;
         private TownMapViewModel()
         {
@@ -82,16 +81,14 @@ namespace UwpProject.TownMap
                     {
                         if(walker.Walk(CurrentLocation.Position, position.Coordinate.Point.Position))
                         {
-                            Debug.WriteLine($"Encounter: {Encounter}, Change of encounter: {changeOfEncounter}");
-                            if(new Random().Next(100) < changeOfEncounter && !Encounter)
-                            {
-                                Encounter = true;
+                            //Debug.WriteLine($"Encounter: {Encounter}, Change of encounter: {changeOfEncounter}");
+                            if(new Random().Next(100) < changeOfEncounter)
+                            {                                
                                 changeOfEncounter = 50;
                                 walker.EncouterTriggerd();                                
                             }
                             else
-                            {
-                                Encounter = false;
+                            {                                
                                 changeOfEncounter += 5;
                             }                                
                         }

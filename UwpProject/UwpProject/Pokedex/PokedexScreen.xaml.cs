@@ -42,25 +42,11 @@ namespace UwpProject.Pokedex
         {
             this.InitializeComponent();
             Entries = new List<PokemonEntry>();
-            getPokemonList();
+            Entries = BillsPc.Instance.Entries;
             
             //File.WriteAllText("Storage/pokedexentries.json", json);
             DataContext = this;
-        }
-        
-        public void getPokemonList()
-        {
-            string json = File.ReadAllText("Storage/pokedexentries.json");
-
-            JObject JsonObject = JObject.Parse(json);
-            IList<JToken> JsonList = JsonObject["Entries"].ToList();
-            foreach (JToken pokemonentry in JsonList)
-            {
-                Entries.Add(JsonConvert.DeserializeObject<PokemonEntry>(pokemonentry.ToString()));
-            }
-            System.Diagnostics.Debug.WriteLine(Entries.Count);
-            MyPokedex.Instance.Pokedex = Entries;
-        }
+        }        
 
         //private async Task getPokemonInstance()
         //{
